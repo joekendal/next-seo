@@ -184,6 +184,54 @@ export type AggregateOffer = {
   offers?: Offers | Offers[];
 };
 
+export type MonetaryAmount = {
+  value: string;
+  currency: string;
+}
+
+// https://schema.org/DefinedRegion
+export type DefinedRegion = {
+  addressCountry: string;
+  addressRegion?: string;
+  postalCode?: string;
+  postalCodePrefix?: string;
+  postalCodeRange?: PostalCodeRangeSpecification;
+}
+
+// https://schema.org/PostalCodeRangeSpecification
+export type PostalCodeRangeSpecification = {
+  postalCodeBegin: string;
+  postalCodeEnd: string;
+}
+
+// https://schema.org/QuantitativeValue
+export type QuantitativeValue = {
+  minValue?: string;
+  maxValue?: string;
+  value?: string | boolean | number;
+  unitCode?: string;
+  unitText?: string;
+}
+
+// https://schema.org/ShippingDeliveryTime
+export type ShippingDeliveryTime = {
+  handlingTime?: QuantitativeValue;
+  transitTime?: QuantitativeValue;
+  cutOffTime?: string;
+  businessDays?: OpeningHoursSpecification
+}
+
+// https://schema.org/OfferShippingDetails
+export type OfferShippingDetails = {
+  shippingRate: MonetaryAmount;
+  shippingDestination?: DefinedRegion;
+  deliveryTime?: ShippingDeliveryTime;
+  doesNotShip?: boolean;
+  shippingLabel?: string;
+  shippingSettingsLink?: string;
+  transitTimeLabel?: string;
+}
+
 export interface OpenGraphVideoActors {
   profile: string;
   role?: string;
@@ -286,11 +334,11 @@ export interface RDFaMetaTag extends BaseMetaTag {
 
 export interface HTTPEquivMetaTag extends BaseMetaTag {
   httpEquiv:
-    | 'content-security-policy'
-    | 'content-type'
-    | 'default-style'
-    | 'x-ua-compatible'
-    | 'refresh';
+  | 'content-security-policy'
+  | 'content-type'
+  | 'default-style'
+  | 'x-ua-compatible'
+  | 'refresh';
   name?: undefined;
   property?: undefined;
 }
@@ -426,4 +474,4 @@ export interface DefaultSeoProps {
   additionalMetaTags?: ReadonlyArray<MetaTag>;
   additionalLinkTags?: ReadonlyArray<LinkTag>;
 }
-export interface BuildTagsParams extends DefaultSeoProps, NextSeoProps {}
+export interface BuildTagsParams extends DefaultSeoProps, NextSeoProps { }

@@ -6,6 +6,7 @@ import type {
   AggregateRating,
   AggregateOffer,
   Offers,
+  OfferShippingDetails,
 } from 'src/types';
 
 import { setOffers } from 'src/utils/schema/setOffers';
@@ -39,6 +40,7 @@ export interface ProductJsonLdProps extends JsonLdProps {
   purchaseDate?: string;
   releaseDate?: string;
   award?: string;
+  shippingDetails?: OfferShippingDetails;
 }
 
 function ProductJsonLd({
